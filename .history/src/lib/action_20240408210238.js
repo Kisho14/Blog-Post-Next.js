@@ -66,7 +66,6 @@ export const addUser = async (prevState, formData) => {
     console.log("saved to db");
     //The cache is invalid only when this path is accessed.
     revalidatePath("/admin");
-    return { success: "Submited" }
   } catch (err) {
     console.log(err);
     return { error: "Something went wrong" };

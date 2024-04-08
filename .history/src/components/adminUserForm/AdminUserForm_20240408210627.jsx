@@ -3,7 +3,6 @@
 import { addUser } from "@/lib/action";
 import styles from "./adminUserForm.module.css";
 import { useFormState } from "react-dom";
-import { useState } from "react";
 
 const AdminUserForm = () => {
   const [formState, setFormState] = useState({
@@ -14,7 +13,7 @@ const AdminUserForm = () => {
     isAdmin: "",
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (state.success) {
       setFormState({
