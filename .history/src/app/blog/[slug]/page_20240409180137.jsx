@@ -8,7 +8,7 @@ import { getPost } from "@/lib/data";
 const getData = async (slug) => {
   try {
     const res = await fetch(
-      `${process.env.API_URL}/blog/${slug}`
+      `${process.env.API_URL}//api/blog/${slug}`
       // `https://bingoblog.vercel.app/api/blog/${slug}`
       // `http://localhost:3000/api/blog/${slug}`
     );
