@@ -49,15 +49,11 @@ export const deletePost = async (formData) => {
 };
 
 export const addUser = async (prevState, formData) => {
-  var { username, email, password, img, isAdmin } = Object.fromEntries(formData);
-
-  // console.log(username, email, password, img, isAdmin)
+  const { username, email, password, img, isAdmin } = Object.fromEntries(formData);
 
   if(img === "" || img === undefined){
-    img = "/noavatar.png"
+    img = "./public/noavatar.png"
   }
-
-  // console.log(img)
 
   try {
     connectToDb();
