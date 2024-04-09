@@ -8,8 +8,7 @@ import { getPost } from "@/lib/data";
 const getData = async (slug) => {
   try {
     const res = await fetch(
-      `https://bingoblog.vercel.app/api/blog/${slug}`
-      // `http://localhost:3000/api/blog/${slug}`
+      `http://localhost:3000/api/blog/${slug}`
     );
     const post = await res.json();
     return post;
