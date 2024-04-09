@@ -10,6 +10,10 @@ const AdminPage = async () => {
 
   const session = await auth();
 
+  console.log(session)
+
+  console.log(session.id)
+
   return (
     <div className={styles.container}>
       <div className={styles.row}>
@@ -19,7 +23,7 @@ const AdminPage = async () => {
           </Suspense>
         </div>
         <div className={styles.col}>
-          <AdminPostForm userId = {session?.id} />
+          <AdminPostForm userId = {session.id} />
         </div>
       </div>
       <div className={styles.row}>

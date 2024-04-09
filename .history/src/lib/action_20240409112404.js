@@ -6,20 +6,21 @@ import { signIn, signOut } from "./auth";
 import bcrypt from "bcrypt";
 
 export const addPost = async (prevState, formData) => {
+  // const title = formData.get("title")
+  // const desc = formData.get("desc")
+  // const slug = formData.get("slug")
+  // const userId = formData.get("userId")
 
-  const { title, desc, slug, img, userId } = Object.fromEntries(formData);
+  const { title, desc, slug, userId } = Object.fromEntries(formData);
 
   try {
     connectToDb();
     const newPost = new Post({
       title,
       desc,
-      img,
-      userId,
       slug,
+      userId,
     });
-  
-    console.log(newPost)
 
     await newPost.save();
     console.log("saved to db");
@@ -51,6 +52,8 @@ export const deletePost = async (formData) => {
 export const addUser = async (prevState, formData) => {
   const { username, email, password, img, isAdmin } = Object.fromEntries(formData);
 
+  console.log(prevState)
+
   try {
     connectToDb();
     const newUser = new User({
@@ -65,6 +68,7 @@ export const addUser = async (prevState, formData) => {
     console.log("saved to db");
     //The cache is invalid only when this path is accessed.
     revalidatePath("/admin");
+    return { success: "Submited" }
   } catch (err) {
     console.log(err);
     return { error: "Something went wrong" };

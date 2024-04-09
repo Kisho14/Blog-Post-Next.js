@@ -10,6 +10,10 @@ const AdminPage = async () => {
 
   const session = await auth();
 
+  console.log(session)
+
+  console.log(session?.id)
+
   return (
     <div className={styles.container}>
       <div className={styles.row}>

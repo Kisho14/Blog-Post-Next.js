@@ -6,20 +6,32 @@ import { signIn, signOut } from "./auth";
 import bcrypt from "bcrypt";
 
 export const addPost = async (prevState, formData) => {
+  // const title = formData.get("title")
+  // const desc = formData.get("desc")
+  // const slug = formData.get("slug")
+  // const userId = formData.get("userId")
 
-  const { title, desc, slug, img, userId } = Object.fromEntries(formData);
+  const { title, desc, slug, userId } = Object.fromEntries(formData);
+
+  console.log(title, desc, slug, userId);
+
+  console.log(title);
+  console.log(desc);
+  console.log(slug);
+  console.log(userId);
 
   try {
-    connectToDb();
+    await connectToDb();
+    console.log("COnnected");
     const newPost = new Post({
-      title,
-      desc,
-      img,
-      userId,
-      slug,
+      title: title,
+      desc: desc,
+      img: img,
+      userId: userId,
+      slug: slug,
     });
-  
-    console.log(newPost)
+
+    console.log(newPost);
 
     await newPost.save();
     console.log("saved to db");
@@ -49,7 +61,8 @@ export const deletePost = async (formData) => {
 };
 
 export const addUser = async (prevState, formData) => {
-  const { username, email, password, img, isAdmin } = Object.fromEntries(formData);
+  const { username, email, password, img, isAdmin } =
+    Object.fromEntries(formData);
 
   try {
     connectToDb();
@@ -58,7 +71,7 @@ export const addUser = async (prevState, formData) => {
       email,
       password,
       img,
-      isAdmin
+      isAdmin,
     });
 
     await newUser.save();
@@ -68,7 +81,6 @@ export const addUser = async (prevState, formData) => {
   } catch (err) {
     console.log(err);
     return { error: "Something went wrong" };
-
   }
 };
 
@@ -77,7 +89,7 @@ export const deleteUser = async (formData) => {
 
   try {
     connectToDb();
-    await Post.deleteMany({userId: id})
+    await Post.deleteMany({ userId: id });
     await User.findByIdAndDelete(id);
     console.log("deleted from db");
     //The cache is invalid only when this path is accessed. and data's are refreshed.

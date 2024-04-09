@@ -35,7 +35,7 @@
 .desc {
   width: 90%;
   height: 40px;
-  overflow: hidden;
+  overflow: scroll;
   margin-bottom: 20px;
   font-weight: 300;
   color: gray;

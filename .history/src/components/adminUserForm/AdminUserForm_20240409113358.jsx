@@ -16,7 +16,6 @@ const AdminUserForm = () => {
   const [state, formAction] = useFormState(addUser, undefined);
 
   useEffect(()=> {
-    console.log(state)
     setFormState({
       name: "",
       email: "",
@@ -29,11 +28,11 @@ const AdminUserForm = () => {
   return (
     <form action={formAction} className={styles.container}>
       <h1>Add New User</h1>
-      <input type="text" name="username" placeholder="username" />
-      <input type="text" name="email" placeholder="email" />
-      <input type="password" name="password" placeholder="password" />
-      <input type="text" name="img" placeholder="img" />
-      <select name="isAdmin" >
+      <input type="text" name="username" placeholder="username" onChange={(event) => setFormState({ ...formState, name: event.target.value })}/>
+      <input type="text" name="email" placeholder="email" onChange={(event) => setFormState({ ...formState, name: event.target.value })}/>
+      <input type="password" name="password" placeholder="password" onChange={(event) => setFormState({ ...formState, password: event.target.value })}/>
+      <input type="text" name="img" placeholder="img" onChange={(event) => setFormState({ ...formState, img: event.target.value })}/>
+      <select name="isAdmin" onChange={(event) => setFormState({ ...formState, isAdmin: event.target.value })}>
         <option value="false">Is Admin?</option>
         <option value="false">No</option>
         <option value="true">Yes</option>

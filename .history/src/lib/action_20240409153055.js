@@ -10,7 +10,6 @@ export const addPost = async (prevState, formData) => {
   const { title, desc, slug, img, userId } = Object.fromEntries(formData);
 
   try {
-    connectToDb();
     const newPost = new Post({
       title,
       desc,
@@ -18,7 +17,10 @@ export const addPost = async (prevState, formData) => {
       userId,
       slug,
     });
-  
+
+    connectToDb();
+    
+
     console.log(newPost)
 
     await newPost.save();

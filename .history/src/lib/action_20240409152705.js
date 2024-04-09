@@ -6,11 +6,18 @@ import { signIn, signOut } from "./auth";
 import bcrypt from "bcrypt";
 
 export const addPost = async (prevState, formData) => {
+  // const title = formData.get("title")
+  // const desc = formData.get("desc")
+  // const slug = formData.get("slug")
+  // const userId = formData.get("userId")
 
-  const { title, desc, slug, img, userId } = Object.fromEntries(formData);
+  const { title, desc, slug, userId } = Object.fromEntries(formData);
+
+  // console.log(title, desc, slug, userId)
 
   try {
     connectToDb();
+    console.log("COnnected")
     const newPost = new Post({
       title,
       desc,
@@ -18,7 +25,7 @@ export const addPost = async (prevState, formData) => {
       userId,
       slug,
     });
-  
+
     console.log(newPost)
 
     await newPost.save();
